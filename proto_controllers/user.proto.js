@@ -1,7 +1,8 @@
 import grpc from "@grpc/grpc-js";
 import protoloader from "@grpc/proto-loader";
+import { USER_PROTO_PATH } from "@videotube/proto";
 
-const packagedef = protoloader.loadSync("../proto_services/user.proto", {
+const packagedef = protoloader.loadSync(USER_PROTO_PATH, {
   keepCase: true,
   longs: Number,
   enums: String,
@@ -10,9 +11,9 @@ const packagedef = protoloader.loadSync("../proto_services/user.proto", {
 });
 const grpcObject = grpc.loadPackageDefinition(packagedef);
 
-export const userPackage = grpcObject.user;
+const userPackage = grpcObject.user;
 
 export const user_protoclient = new userPackage.UserService(
-  "localhost:50052",
+  "0.0.0.0:50052",
   grpc.credentials.createInsecure()
 );
