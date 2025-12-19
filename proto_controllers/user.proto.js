@@ -11,7 +11,7 @@ const packagedef = protoloader.loadSync(USER_PROTO_PATH, {
 });
 const grpcObject = grpc.loadPackageDefinition(packagedef);
 
-const userPackage = grpcObject.user;
+export const userPackage = grpcObject.user;
 
 export const user_protoclient = new userPackage.UserService(
   "0.0.0.0:50052",
